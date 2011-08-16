@@ -1,5 +1,17 @@
 var filters = require('../lib/filters');
 
+exports.default = function (test) {
+    var defOut = 'blah';
+    test.strictEqual('foo', filters.default('foo', defOut), 'string not overridden by default');
+    test.strictEqual(0, filters.default(0, defOut), 'zero not overridden by default');
+
+    test.strictEqual(defOut, filters.default('', defOut), 'empty string overridden by default');
+    test.strictEqual(defOut, filters.default(undefined, defOut), 'default overrides undefined');
+    test.strictEqual(defOut, filters.default(null, defOut), 'default overrides null');
+    test.strictEqual(defOut, filters.default(false, defOut), 'default overrides false');
+    test.done();
+};
+
 exports.lower = function (test) {
     var input = 'BaR';
     test.strictEqual('bar', filters.lower(input));
@@ -36,6 +48,13 @@ exports.join = function (test) {
     test.strictEqual('1 * 2 * 3', filters.join(input, ' * '));
     input = 'asdf';
     test.strictEqual('asdf', filters.join(input, '-'), 'Non-array input is not joined.');
+    test.done();
+};
+
+exports.reverse = function (test) {
+    test.deepEqual([3, 2, 1], filters.reverse([1, 2, 3]), 'reverse array');
+    test.strictEqual('asdf', filters.reverse('asdf'), 'reverse string does nothing');
+    test.deepEqual({ 'foo': 'bar' }, filters.reverse({ 'foo': 'bar' }), 'reverse object does nothing');
     test.done();
 };
 
