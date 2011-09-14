@@ -12,7 +12,7 @@ var fs = require("fs"),
 
     CACHE = {},
     DEBUG = false,
-    ROOT = "/",
+    ROOT = "./",
 
     fromString, fromFile, createTemplate;
 
