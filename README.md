@@ -1,3 +1,10 @@
+# Update
+
+I suggest using Paul Armstrong's fork of Node-t as it covers more features and is actively developed:
+
+https://github.com/paularmstrong/swig
+
+
 # Node-T
 
 A fast django-like templating engine for node.js.
